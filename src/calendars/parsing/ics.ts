@@ -59,14 +59,8 @@ function icsToOFC(input: ical.Event): OFCEvent {
                 ? { allDay: true }
                 : {
                       allDay: false,
-                      startTime: getTime(
-                          input.startDate.convertToZone(
-                              ical.Timezone.utcTimezone
-                          )
-                      ),
-                      endTime: getTime(
-                          input.endDate.convertToZone(ical.Timezone.utcTimezone)
-                      ),
+                      startTime: getTime(input.startDate),   // this was converting to UTC here for some reason.
+                      endTime: getTime(input.endDate),          // I'm using it for my google cal so for read-only purposes I think this should work
                   }),
         };
     } else {
